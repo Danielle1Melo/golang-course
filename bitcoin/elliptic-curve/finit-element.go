@@ -32,7 +32,7 @@ func (f *FieldElement) EquatTo(other *FieldElement) bool {
 }
 
 func (f *FieldElement) Add(other *FieldElement) *FieldElement {
-	if f.order == other.order {
+	if f.order != other.order {
 		panic("add need to do on the field element with the same order")
 	}
 
@@ -42,4 +42,8 @@ func (f *FieldElement) Add(other *FieldElement) *FieldElement {
 // a ,b (a +b) % order = 0, b is called negate of a, b = -a
 func (f *FieldElement) Negate() *FieldElement {
 	return NewFieldElement(f.order, f.order-f.num)
+}
+
+func (f *FieldElement) Substract(other *FieldElement) *FieldElement {
+	return f.Add(other.Negate())
 }
