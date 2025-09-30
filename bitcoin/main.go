@@ -45,10 +45,14 @@ func main() {
 	f46 := ecc.NewFieldElement(big.NewInt(57), big.NewInt(46))
 	fmt.Printf("field element 46 + 44 is %v\n", f46.Add(f44))
 
-	fmt.Printf("multiplie 46 with itself is: %v\n", f46.Mutiply(f46))
+	fmt.Printf("multiplie 46 with itself is: %v\n", f46.Multiply(f46))
 	fmt.Printf("element 46 with the power of 2 is %v\n", f46.Power(big.NewInt(2)))
 
 	SolveField19MultiplieSet()
 
 	ComputeFieldOrderPower()
+
+	f2 := ecc.NewFieldElement(big.NewInt(int64(19)), big.NewInt(int64(2)))
+	f7 := ecc.NewFieldElement(big.NewInt(int64(19)), big.NewInt(int64(7)))
+	fmt.Printf("field element 2 /7 with order 19 is %v\n", f2.Divide(f7))
 }

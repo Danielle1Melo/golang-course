@@ -55,7 +55,7 @@ func (f *FieldElement) Substract(other *FieldElement) *FieldElement {
 	return f.Add(other.Negate())
 }
 
-func (f *FieldElement) Mutiply(other *FieldElement) *FieldElement {
+func (f *FieldElement) Multiply(other *FieldElement) *FieldElement {
 	f.CheckOrder((other))
 
 	var op big.Int
@@ -73,4 +73,13 @@ func (f *FieldElement) ScalarMul(val *big.Int) *FieldElement {
 	var op big.Int
 	mul := op.Mul(f.num, val)
 	return NewFieldElement(f.order, op.Mod(mul, f.order))
+}
+
+func (f *FieldElement) Divide(other *FieldElement) *FieldElement {
+	f.CheckOrder((other))
+
+	// a / b = a * bˆ(p-2)
+	var op big.Int
+	otherReverse := other.Power(op.Sub(f.order, big.NewInt(int64(2))))
+	return f.Multiply(otherReverse)
 }
