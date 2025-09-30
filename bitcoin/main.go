@@ -42,11 +42,13 @@ func main() {
 
 	//check (46 + 44) % order(57) == 33
 	fmt.Printf("check 46 + 44 over module of 57 is %d\n", (46+44)%57)
-	f46 := ecc.NewFieldElement(big.NewInt(57), big.NewInt(46))
+	f46 := ecc.NewFieldElement(big.NewInt(int64(57)), big.NewInt(int64(46)))
 	fmt.Printf("field element 46 + 44 is %v\n", f46.Add(f44))
 
 	fmt.Printf("multiplie 46 with itself is: %v\n", f46.Multiply(f46))
 	fmt.Printf("element 46 with the power of 2 is %v\n", f46.Power(big.NewInt(2)))
+	fmt.Printf("field element 46 * 46 with order 57 is %v\n", f46.Multiply(f46))
+	fmt.Printf("field element 46 with power of 58 is %v\n", f46.Power(big.NewInt(int64(58))))
 
 	SolveField19MultiplieSet()
 
